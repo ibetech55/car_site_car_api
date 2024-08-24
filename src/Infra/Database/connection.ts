@@ -12,6 +12,7 @@ import {
   DATABASE_PORT,
   DATABASE_USERNAME,
 } from "../../Configs/Enviroment/EnviromentVariables";
+import { Features } from "../../Entities/feature.entity";
 const AppDataSource = new DataSource({
   type: "postgres",
   port: DATABASE_PORT,
@@ -21,7 +22,7 @@ const AppDataSource = new DataSource({
   host: DATABASE_HOST,
   synchronize: false,
   logging: false,
-  entities: [CarUsers, CarAddresses, CarImages, Cars],
+  entities: [CarUsers, CarAddresses, CarImages, Cars, Features],
   migrations: [`${__dirname}/**/Migrations/*.{ts,js}`],
 });
 export { AppDataSource };

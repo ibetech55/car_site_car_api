@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { carRoutes } from "./cars";
+import { carRoutes } from "./car";
+import { featureRoutes } from "./feature";
 
 const apiRoutes = Router();
-apiRoutes.use([carRoutes]);
+apiRoutes.use([carRoutes, featureRoutes]);
 
 export { apiRoutes };
