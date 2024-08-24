@@ -14,7 +14,7 @@ servers:
   - url: http://localhost:5004
     description: Development server
 paths:
-  "/api/car":
+  "/car_api/car":
     post:
       summary: Create a new car
       security:
@@ -86,3 +86,174 @@ paths:
           #             type: boolean
           #           createdAt:
           #             type: string
+  "/car_api/feature":
+    get:
+      summary: View all features
+      tags:
+        - Features
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    featureName:
+                      type: string
+                    featureType:
+                      type: string
+                    active:
+                      type: boolean
+                    createdAt:
+                      type: string
+    post:
+      summary: Create a new feature
+      tags:
+        - Features
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                featureName:
+                  type: string
+                featureType:
+                  type: string
+      responses:
+        "201":
+          description: Feature created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  featureName:
+                    type: string
+                  featureType:
+                    type: string
+                  active:
+                    type: boolean
+                  createdAt:
+                    type: string
+        "400":
+          description: Bad request
+  "/car_api/feature/{id}":
+    delete:
+      summary: Delete a feature
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Feature ID
+            schema:
+              type: string
+      tags:
+        - Features
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: boolean
+    put:
+      summary: Update a feature
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Feature ID
+            schema:
+              type: string
+      tags:
+        - Features
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                featureName:
+                  type: string
+                featureType:
+                  type: string
+                active:
+                  type: boolean
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  featureName:
+                    type: string
+                  featureType:
+                    type: string
+                  active:
+                    type: boolean
+  "/car_api/feature/get-by-id/{id}":
+    get:
+      summary: Get a feature by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Feature ID
+            schema:
+              type: string
+      tags:
+        - Features
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  featureName:
+                    type: string
+                  featureType:
+                    type: string
+                  active:
+                    type: boolean
+                  createdAt:
+                    type: string
+                  updatedAt:
+                    type: string
+  "/car_api/feature/get-features-grouped":
+    get:
+      summary: Get a feature grouped by feature type
+      tags:
+        - Features
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    featureType:
+                      type: string
+                    features:
+                      type: array
+                      items:
+                        type: string
+

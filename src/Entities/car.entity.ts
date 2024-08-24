@@ -38,6 +38,54 @@ class Cars {
   @Column()
   vin: string;
 
+  @Column()
+  transmission: string;
+
+  @Column()
+  exterior_color: string;
+
+  @Column()
+  interior_color: string;
+
+  @Column()
+  condition: string;
+
+  @Column()
+  number_owners: number;
+
+  @Column()
+  accident: boolean;
+
+  @Column()
+  drive_train: string;
+
+  @Column()
+  engine: string;
+
+  @Column()
+  seller_notes: string;
+
+  @Column()
+  active: boolean;
+
+  @Column()
+  zip_code: string;
+
+  @Column()
+  clean_history_report: boolean;
+
+  @Column()
+  has_issue: boolean;
+
+  @Column()
+  number_keys: number;
+
+  @Column()
+  has_payments: boolean;
+
+  @Column()
+  status: string;
+
   @CreateDateColumn()
   created_at?: Date;
 
