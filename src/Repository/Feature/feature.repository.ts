@@ -2,8 +2,8 @@ import { Repository } from "typeorm";
 import { CreateFeatureDbDto } from "../../Data/Feature/CreateFeature";
 import { Features } from "../../Entities/feature.entity";
 import { IFeatureRepository } from "./IFeatureRepository";
-import { UpdateFeatureDbDto } from "../../Data/CarFeatue/UpdateCarDto";
 import { AppDataSource } from "../../Infra/Database/connection";
+import { UpdateFeatureDbDto } from "../../Data/Feature/UpdateFeatureDto";
 
 export class FeatureRepository implements IFeatureRepository {
     private readonly repository: Repository<Features>;

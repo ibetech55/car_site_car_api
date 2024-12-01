@@ -10,7 +10,7 @@ export class CreateCarController {
   }
 
   async handle(request: Request, response: Response) {
-    const userData:ITokenData = getUserData(cookie.parse(request.headers.cookie).auth_token)
+    const userData: ITokenData = getUserData(cookie.parse(request.headers.cookie).auth_token)
     const data = await this._createCarUseCase.execute(
       request.body,
       userData,

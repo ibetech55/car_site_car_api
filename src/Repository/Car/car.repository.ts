@@ -11,8 +11,13 @@ export class CarRepository implements ICarRepository {
     this.repository = AppDataSource.getRepository<Cars>(Cars);
   }
   async create(values: CreateCarDbDto): Promise<Cars> {
-    const newCar = this.repository.create(values);
-    const data = await this.repository.save(newCar);
-    return data;
+    try {
+      const newCar = this.repository.create(values);
+      const data = await this.repository.save(newCar);
+      return data;
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 }

@@ -15,6 +15,8 @@ import cookieParser from "cookie-parser";
 
 class HttpServer {
   app: express.Express;
+  private corsOrgins = ["http://localhost:5173", "http://localhost:4220"];
+
   constructor() {
     this.app = express();
     this.middlewares();
@@ -46,8 +48,13 @@ class HttpServer {
     this.app.use(express.json());
     this.app.use(cookieParser())
     this.app.use(expressFileUpload());
-    this.app.use(cors());
     this.app.use(morgan("dev"));
+    this.app.use(
+      cors({
+        origin: this.corsOrgins,
+        credentials: true,
+      })
+    );
   }
 
   routes() {
@@ -79,15 +86,23 @@ class HttpServer {
 
   defaultHeaders() {
     this.app.use((req, res, next) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
+      const origin = this.corsOrgins.includes(req.header("origin"))
+        ? req.headers.origin
+        : null;
+      // if (!origin) {
+      //   throw new AppError("Unauthrized", 403);
+      // }
+      res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader(
         "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
+        "Content-Type, Authorization"
       );
+      res.setHeader("Access-Control-Allow-Origin", origin);
       res.setHeader(
         "Access-Control-Allow-Methods",
-        "GET, POST, PATCH, DELETE, OPTIONS"
+        "GET, POST, PUT, DELETE, PATCH"
       );
+      res.setHeader("Access-Control-Allow-Headers", "Content-Type");
       next();
     });
   }

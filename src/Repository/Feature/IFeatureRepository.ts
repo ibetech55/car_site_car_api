@@ -1,5 +1,5 @@
-import { UpdateFeatureDbDto } from "../../Data/CarFeatue/UpdateCarDto";
 import { CreateFeatureDbDto } from "../../Data/Feature/CreateFeature";
+import { UpdateFeatureDbDto } from "../../Data/Feature/UpdateFeatureDto";
 import { Features } from "../../Entities/feature.entity";
 
 export interface IFeatureRepository {
