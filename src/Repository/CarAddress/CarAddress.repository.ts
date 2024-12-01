@@ -10,9 +10,14 @@ export class CarAddressRepository implements ICarAddressRepository {
   constructor() {
     this.repository = AppDataSource.getRepository<CarAddresses>(CarAddresses);
   }
-  async create(values: CreateCarAddressDbDto):Promise<CarAddresses> {
-    const newAddress = this.repository.create(values);
-    const data = await this.repository.save(newAddress);
-    return data;
+  async create(values: CreateCarAddressDbDto): Promise<CarAddresses> {
+    try {
+      const newAddress = this.repository.create(values);
+      const data = await this.repository.save(newAddress);
+      return data;
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 }

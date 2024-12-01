@@ -8,4 +8,5 @@ export interface CreateCarImageDbDto {
   filename: string;
   car_id: string;
   position: number;
+  default_image: boolean;
 }

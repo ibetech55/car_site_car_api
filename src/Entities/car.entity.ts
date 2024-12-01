@@ -69,9 +69,6 @@ class Cars {
   active: boolean;
 
   @Column()
-  zip_code: string;
-
-  @Column()
   clean_history_report: boolean;
 
   @Column()
@@ -88,7 +85,6 @@ class Cars {
 
   @CreateDateColumn()
   created_at?: Date;
-
 
   @UpdateDateColumn()
   updated_at?: Date;

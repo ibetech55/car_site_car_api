@@ -16,6 +16,9 @@ class CarImages {
   @Column()
   position: number;
 
+  @Column()
+  default_image: boolean;
+
   @CreateDateColumn()
   created_at?: Date;
 
